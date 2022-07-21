@@ -1,0 +1,46 @@
+{
+    "name": "UIButtons",
+    "maps": [
+        {
+            "name": "UIKeys",
+            "id": "e23d9ff8-709a-426e-a33b-328208ae4850",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "f40eebed-1665-40b7-bf12-54a15938e4d4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "30563e85-2f99-4df0-b794-7226edfe1227",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "UIKeys",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "UIKeys",
+            "bindingGroup": "UIKeys",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
