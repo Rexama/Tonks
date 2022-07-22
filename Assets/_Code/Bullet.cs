@@ -3,16 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Bullet : MonoBehaviour
 {
     public float bulletSpeed = 10f;
     public ParticleSystem explosion;
+    public GameObject explosion2;
     public int bounceLimit = 3;
     
     private Rigidbody2D _rb;
     private Vector2 velocity;
     private bool exit = false;
+
+    public UnityEvent OnHit;
 
     private void Start()
     {
@@ -51,18 +55,26 @@ public class Bullet : MonoBehaviour
 
             if (col.CompareTag("Mouse"))
             {
-                Instantiate(explosion,col.gameObject.transform.position,quaternion.identity);
+                OnHit?.Invoke();
+                //Instantiate(explosion,col.gameObject.transform.position,quaternion.identity);
+                Instantiate(explosion2, col.gameObject.transform.position, quaternion.identity);
+
                 colided.SetActive(false);
-                Destroy(gameObject);
                 GameLogic.Ins.ControllerWin();
+                Destroy(gameObject);
             }
 
             if (col.CompareTag("Controller"))
             {
-                Instantiate(explosion,col.gameObject.transform.position,quaternion.identity);
+                OnHit?.Invoke();
+                //Instantiate(explosion,col.gameObject.transform.position,quaternion.identity);
+                Instantiate(explosion2, col.gameObject.transform.position, quaternion.identity);
+
                 colided.SetActive(false);
-                Destroy(gameObject);
                 GameLogic.Ins.MouseWin();
+                Destroy(gameObject);
+
+
             }
         }
     }

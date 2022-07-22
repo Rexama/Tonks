@@ -2,6 +2,7 @@ using DG.Tweening;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 
 public class TankMovement : MonoBehaviour
@@ -17,6 +18,8 @@ public class TankMovement : MonoBehaviour
     private string _type;
     public float ammoSpeed = 30f;
     public float moveForce = 10f;
+
+    public UnityEvent OnShoot;
 
     private void Start()
     {
@@ -60,6 +63,8 @@ public class TankMovement : MonoBehaviour
             gun.transform.right = (Vector3) aimPos;
         if (isFireButtonPresed)
         {
+            OnShoot?.Invoke();
+
             var newAmmo = Instantiate(ammo, gun.transform.position, quaternion.identity);
             newAmmo.transform.right = gun.transform.right;
             rb.AddForce(-gun.transform.right * moveForce);
